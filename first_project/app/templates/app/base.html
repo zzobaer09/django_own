@@ -12,10 +12,12 @@
             {% block h1 %} {% endblock %}
         </h1>
         <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-            Deserunt odio consequatur provident eum. Fuga ullam eum 
-            dolorum praesentium commodi laudantium minima tempora eaque 
-            excepturi architecto voluptatibus facilis, nesciunt dolores magni!
+            {% block content %}
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                Deserunt odio consequatur provident eum. Fuga ullam eum 
+                dolorum praesentium commodi laudantium minima tempora eaque 
+                excepturi architecto voluptatibus facilis, nesciunt dolores magni!
+            {% endblock %}
         </p>
     </div>
 </body>

@@ -12,8 +12,9 @@ def home(response):
     return HttpResponse(render(response , "app/home.html" , {}))
 
 
-def v1(response):
-    return HttpResponse("<h1>this is another page</h1>")
+def list(response):
+    return HttpResponse(render(response , "app/list.html",{}))
+    return HttpResponse("hello world")
 
 
 def log_in(response):

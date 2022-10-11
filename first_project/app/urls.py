@@ -8,7 +8,7 @@ urlpatterns = [
     path("" , views.home , name="home"),
 
     # * all start routes are going to be right here
-    path("list/" , views.v1 , name="v1"),
+    path("list/" , views.list , name="list"),
     path("list/<str:name>/" , views.view_data , name="view data from database"),
     
     # * routes of log_in
