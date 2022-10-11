@@ -37,14 +37,4 @@ def view_data(response , name):
     __name = ls.get(name=name)
     __todo = __name.item_set.all()
 
-    r = ""
-    for i in __todo:
-        r += "<p>%s</p>" %i.text
-
-    return HttpResponse(""" 
-                            <h1>%s</h1> 
-                            <br>
-                            <br>
-                            <p>%s</p>
-                            
-                        """ %(__name.name , r))
+    return HttpResponse(render(response , "app/list_item.html", {"name":__name , "todo":__todo}))
