@@ -5,9 +5,11 @@ from .models import ToDoList , Item
 
 # ! here i have created two views
 
-def index(response):
-    return HttpResponse("""<h1>first django project</h1>
-                            <h2>you come to home</h2>""")
+
+
+# * home page
+def home(response):
+    return HttpResponse(render(response , "app/home.html" , {}))
 
 
 def v1(response):
