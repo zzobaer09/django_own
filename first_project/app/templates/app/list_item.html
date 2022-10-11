@@ -1,0 +1,19 @@
+{% extends "app/base.html" %}
+
+{% block titel %} Item List {% endblock %}
+
+{% block h1 %} {{ name.name }} {% endblock %}
+
+
+{{ todo }}
+
+{% block content %}
+
+    <ol>
+        {% for i in todo %}
+            <li><h3> {{i}} </h3></li>
+        {% endfor %}
+    </ol>
+
+
+{% endblock %}

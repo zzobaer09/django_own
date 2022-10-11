@@ -1,0 +1,22 @@
+{% extends "app/base.html" %}
+
+
+{% block titel %} List Page {% endblock %}
+
+{%  block h1 %} All List {% endblock %}
+
+
+
+{{ls}}
+
+{% block content %}
+
+    <ol>
+
+        {% for i in ls%}
+            <li><h3> {{i}} </h3></li>    
+        {% endfor %}
+    
+    </ol>
+
+{% endblock %}

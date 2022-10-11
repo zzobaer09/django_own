@@ -3,6 +3,13 @@ from django.http import HttpResponse
 from .models import ToDoList , Item
 # Create your views here.
 
+
+
+# ! OBJECT FROM DB
+ls = ToDoList.objects
+
+
+
 # ! here i have created two views
 
 
@@ -12,8 +19,9 @@ def home(response):
     return HttpResponse(render(response , "app/home.html" , {}))
 
 
-def v1(response):
-    return HttpResponse("<h1>this is another page</h1>")
+def list(response):
+    list_ = [i.name for i in ls.all()]
+    return HttpResponse(render(response , "app/list.html",{"ls":list_}))
 
 
 def log_in(response):
@@ -24,20 +32,9 @@ def log_in(response):
 
 
 ###############################
-ls = ToDoList
 
 def view_data(response , name):
-    __name = ls.objects.get(name=name)
+    __name = ls.get(name=name)
     __todo = __name.item_set.all()
 
-    r = ""
-    for i in __todo:
-        r += "<p>%s</p>" %i.text
-
-    return HttpResponse(""" 
-                            <h1>%s</h1> 
-                            <br>
-                            <br>
-                            <p>%s</p>
-                            
-                        """ %(__name.name , r))
+    return HttpResponse(render(response , "app/list_item.html", {"name":__name , "todo":__todo}))
