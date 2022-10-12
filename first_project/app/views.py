@@ -25,11 +25,7 @@ def list(response):
 
 
 def log_in(response):
-    return HttpResponse("""
-                            <h1> you have to log in to continue </h1>
-                            <button>click here to log in</button>
-                            """)
-
+    return render(response , "app/log_in.html" , {})
 
 ###############################
 
