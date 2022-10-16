@@ -32,7 +32,32 @@ def log_in(response):
 
 def view_data(response , name):
     __name = ls.get(name=name)
-    __todo = __name.item_set.all()
+    __item_set = __name.item_set
+    __todo = __item_set.all()
+
+    if response.method == "POST":
+        print(response.POST)
+        if response.POST.get("save"):
+
+            if response.POST.get("newItemField"):
+                txt = response.POST.get("newItemField")
+                __item_set.create(text=txt , complete=False)
+
+            elif response.POST.get("save"):
+
+                for item in __todo:
+                    if response.POST.get("c{}".format(item.id)) == "clicked":
+                        item.complete = True
+                    else:
+                        item.complete = False
+                    item.save()
+
+                    if response.POST.get("d{}".format((item.id))) == "delete":
+                        item.delete()
+
+
+
+
 
     return HttpResponse(render(response , "app/list_item.html", {"name":__name , "todo":__todo}))
 
