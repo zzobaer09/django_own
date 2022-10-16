@@ -9,11 +9,23 @@
 
 {% block content %}
 
-    <ol>
-        {% for i in todo %}
-            <li><h3> {{i}} </h3></li>
-        {% endfor %}
-    </ol>
+    <form method="post" action="#">
+        {% csrf_token %}
+
+        <ol>
+            {% for i in todo %}
+            {% if i.complete == True %}
+                <li><h3><input type="checkbox" name="c{{i.id}}" value="clicked" checked> {{i}} -- COMPLETE  ( Delete: <input type="checkbox" name="d{{i.id}}" value="delete">)</h3></li>
+                {% elif i.complete == False %}
+                <li><h3><input type="checkbox" name="c{{i.id}}" value="clicked">{{i}} -- INCOMPLETE  ( Delete: <input type="checkbox" name="d{{i.id}}" value="delete">)</h3></li>
+            {% endif %}
+            {% endfor %}
+        </ol>
+        <br>
+        <input type="text" name="newItemField">
+        <br><br>
+        <button type="submit" name="save" value="save">Save</button>
+    </form>
 
 
 {% endblock %}
