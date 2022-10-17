@@ -11,12 +11,22 @@
 
 {% block content %}
 
-    <ol>
-
-        {% for i in ls%}
-            <li><h3> {{i}} </h3></li>    
-        {% endfor %}
+    <div>
+        <ol>
     
-    </ol>
+            {% for i in ls%}
+                <li><h3> {{i}} </h3></li>    
+            {% endfor %}
+        
+        </ol>
+    </div>
+    
+    <div>
+        <form method="post" action="">
+            {% csrf_token %}
+            {{ FORM.as_p }}
+            <button type="submit"> Create </button>
+        </form>
+    </div>
 
 {% endblock %}
