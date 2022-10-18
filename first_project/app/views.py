@@ -23,7 +23,7 @@ def home(response):
 
 
 def list(response):
-    list_ = [i.name for i in ls.all()]
+    list_ = ls.all()
 
     if response.method == "POST":
         create_form = ToDoForm(response.POST)
@@ -43,6 +43,11 @@ def list(response):
             t.item_set.create(text=_item , complete=_complete)
             return HttpResponseRedirect("{}/".format(t.name))
 
+        # delete ToDoList
+        for i in list_:
+            if response.POST.get("d{}".format(i.id)) == "delete":
+                i.delete()
+                
     else:
         create_form = ToDoForm()
 
