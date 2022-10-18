@@ -2,7 +2,14 @@
 
 {% block titel %} Item List {% endblock %}
 
-{% block h1 %} {{ name.name }} {% endblock %}
+{% block h1 %}
+    <form method="post" action="#">
+        {% csrf_token %}
+        <div>
+            {{ name.name }} (I{{name.id}}) <button type="submit" name="d{{ name.id }}" value="delete">Delete!</button>
+        </div>
+    </form>
+{% endblock %}
 
 
 {{ todo }}
@@ -22,7 +29,7 @@
             {% endfor %}
         </ol>
         <br>
-        <input type="text" name="newItemField">
+        add item: <input type="text" name="newItemField">
         <br><br>
         <button type="submit" name="save" value="save">Save</button>
     </form>
