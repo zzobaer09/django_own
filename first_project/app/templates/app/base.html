@@ -1,12 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style type="text/css">
+        #navbar{
+            background-color: rgb(53, 53, 53);
+            position: fixed;
+            width: 200px;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            font-size: 25px;
+        }
+        #navbar li{
+            list-style: none;
+            padding: 20px 10px;
+        }
+        #navbar li a{
+            display: block;
+            text-decoration: none;
+            color: aqua;
+        }
+        #navbar li a:hover{
+            color: rgb(238, 255, 0);
+        }
+        #content{
+            margin-left: 200px;
+            padding: 10px;
+        }
+    </style>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> {% block titel %} Document {% endblock %} </title>
 </head>
 <body>
+    <div id="navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/list">List</a></li>
+            <li><a href="/log_in">Log In</a></li>
+        </ul>
+    </div>
     <div id="content">
         <h1>
             {% block h1 %} {% endblock %}
