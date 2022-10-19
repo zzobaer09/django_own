@@ -1,0 +1,17 @@
+{% extends "app/base.html" %}
+
+
+{% block titel %} Register {% endblock %}
+
+{% block h1 %} Register {% endblock %}
+
+{% block content %}
+
+    <form action="#" method="post" class="form-group">
+        {% csrf_token %}
+        {{form.as_p}}
+
+        <button type="submit" class="btn btn-success">Register</button>
+    </form>
+
+{% endblock %}
