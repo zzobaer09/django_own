@@ -12,8 +12,6 @@ urlpatterns = [
     # path("list/create/" , views.create , name="create"),
     path("list/<str:name>/" , views.view_data , name="view_item"), #view item form database
     
-    # * routes of log_in
-    path("log_in/" , views.log_in , name="log in page"),
 ]
 
 
