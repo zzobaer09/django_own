@@ -5,11 +5,13 @@
 
 {% block h1 %} Register {% endblock %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
 
     <form action="#" method="post" class="form-group">
         {% csrf_token %}
-        {{form.as_p}}
+        {{ form|crispy}}
 
         <button type="submit" class="btn btn-success">Register</button>
     </form>
