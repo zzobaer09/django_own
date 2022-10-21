@@ -22,9 +22,9 @@
         <ol>
             {% for i in todo %}
             {% if i.complete == True %}
-                <li><h3><input type="checkbox" name="c{{i.id}}" value="clicked" checked> {{i}} -- COMPLETE  ( Delete: <input type="checkbox" name="d{{i.id}}" value="delete">)</h3></li>
+                <li><h4><input type="checkbox" name="c{{i.id}}" value="clicked" checked> {{i}} -- COMPLETE  ( Delete: <input type="checkbox" name="d{{i.id}}" value="delete">)</h4></li>
                 {% elif i.complete == False %}
-                <li><h3><input type="checkbox" name="c{{i.id}}" value="clicked">{{i}} -- INCOMPLETE  ( Delete: <input type="checkbox" name="d{{i.id}}" value="delete">)</h3></li>
+                <li><h4><input type="checkbox" name="c{{i.id}}" value="clicked">{{i}} -- INCOMPLETE  ( Delete: <input type="checkbox" name="d{{i.id}}" value="delete">)</h4></li>
             {% endif %}
             {% endfor %}
         </ol>

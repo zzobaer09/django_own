@@ -16,13 +16,3 @@ urlpatterns = [
 
 
 
-
-"""
-# TODO
-
--make a base template
--inherit base to the home template
--list (list/) template -> inherit form base(this page will show the all name of database)
--list (list/<str:name>/) -> inherit form base or list (this page will show the all items in database)                               
-
-"""
