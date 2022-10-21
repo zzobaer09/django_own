@@ -10,31 +10,36 @@
 {{ls}}
 
 {% block content %}
+    {% if user.is_authenticated%}
 
-    <form action="#" method="post">
-        {% csrf_token %}
-        <div>
-            <ol>
-        
-                {% for i in ls%}
-                    <li><h3> {{i}} id:{{i.id}} <button type="submit" value="delete" name="d{{i.id}}">Delete</button></h3></button></li>    
-                {% endfor %}
-            
-            </ol>
-        </div>
-    </form>
-
-
-    <br>
-    <br>
-    <br>
-    
-    <div>
-        <form method="post" action="">
+        <form action="#" method="post">
             {% csrf_token %}
-            {{ FORM.as_p }}
-            <button type="submit"> Create </button>
+            <div>
+                <ol>
+            
+                    {% for i in ls%}
+                        <li><h3> {{i}} id:{{i.id}} <button type="submit" value="delete" name="d{{i.id}}">Delete</button></h3></button></li>    
+                    {% endfor %}
+                
+                </ol>
+            </div>
         </form>
-    </div>
 
+
+        <br>
+        <br>
+        <br>
+        
+        <div>
+            <form method="post" action="">
+                {% csrf_token %}
+                {{ FORM.as_p }}
+                <button type="submit"> Create </button>
+            </form>
+        </div>
+
+    {% else %}
+    <p>Please <a href="/login">LOGIN</a></p>
+    {% endif %}
 {% endblock %}
+
