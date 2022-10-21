@@ -10,8 +10,6 @@
 {{ls}}
 
 {% block content %}
-    {% if user.is_authenticated%}
-
         <form action="#" method="post">
             {% csrf_token %}
             <div>
@@ -38,8 +36,5 @@
             </form>
         </div>
 
-    {% else %}
-    <p>Please <a href="/login">LOGIN</a></p>
-    {% endif %}
 {% endblock %}
 
