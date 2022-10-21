@@ -47,6 +47,7 @@ def list(response):
             for i in list_:
                 if response.POST.get("d{}".format(i.id)) == "delete":
                     i.delete()
+                    return HttpResponseRedirect("../list")
                     
         else:
             create_form = ToDoForm()
@@ -54,10 +55,13 @@ def list(response):
         return HttpResponse(render(response , "app/list.html",{"ls": list_ , "FORM": create_form}))
     else: return render(response , "app/lock.html")
 
+    
+
+######################################################################################################################################################################
 def log_in(response):
     return render(response , "app/log_in.html" , {})
 
-###############################
+######################################################################################################################################################################
 
 def view_data(response , name):
     __name = ls.get(name=name)
@@ -92,6 +96,7 @@ def view_data(response , name):
                         # delete item
                         if response.POST.get("d{}".format((item.id))) == "delete":
                             item.delete()
+                            return HttpResponseRedirect("../{}/".format(name))
 
 
         return HttpResponse(render(response , "app/list_item.html", {"name":__name , "todo":__todo}))
