@@ -24,7 +24,7 @@
             {% if i.complete == True %}
                 <li><h4><input type="checkbox" name="c{{i.id}}" value="clicked" checked> {{i}} -- COMPLETE  ( Delete: <input type="checkbox" name="d{{i.id}}" value="delete">)</h4></li>
                 {% elif i.complete == False %}
-                <li><h4><input type="checkbox" name="c{{i.id}}" value="clicked">{{i}} -- INCOMPLETE  ( Delete: <input type="checkbox" name="d{{i.id}}" value="delete">)</h4></li>
+                <li><h4><input type="checkbox" name="c{{i.id}}" value="clicked"> {{i}} -- INCOMPLETE  ( Delete: <input type="checkbox" name="d{{i.id}}" value="delete">)</h4></li>
             {% endif %}
             {% endfor %}
         </ol>
