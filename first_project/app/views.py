@@ -41,6 +41,7 @@ def list(response):
                 t = ToDoList(name=_name)
                 t.save()
                 t.item_set.create(text=_item , complete=_complete)
+                response.user.todolist.add(t)
                 return HttpResponseRedirect("{}/".format(t.name))
 
             # delete ToDoList
@@ -52,7 +53,7 @@ def list(response):
         else:
             create_form = ToDoForm()
 
-        return HttpResponse(render(response , "app/list.html",{"ls": list_ , "FORM": create_form}))
+        return HttpResponse(render(response , "app/list.html",{"FORM": create_form}))
     else: return render(response , "app/lock.html")
 
     
@@ -68,41 +69,41 @@ def view_data(response , name):
     __item_set = __name.item_set
     __todo = __item_set.all()
 
-    if response.user.is_authenticated:
+    if __name in response.user.todolist.all():
+        if response.user.is_authenticated:
 
 
-        if response.method == "POST":
-            # print(response.POST)
-            if response.POST.get("d{}".format(__name.id)) == "delete":
-                __name.delete()
-                return HttpResponseRedirect("/list/")
+            if response.method == "POST":
+                # print(response.POST)
+                if response.POST.get("d{}".format(__name.id)) == "delete":
+                    __name.delete()
+                    return HttpResponseRedirect("/list/")
 
-            if response.POST.get("save"):
+                if response.POST.get("save"):
 
-                # to add item in ToDoList
-                if response.POST.get("newItemField"):
-                    txt = response.POST.get("newItemField")
-                    __item_set.create(text=txt , complete=False)
+                    # to add item in ToDoList
+                    if response.POST.get("newItemField"):
+                        txt = response.POST.get("newItemField")
+                        __item_set.create(text=txt , complete=False)
 
-                # to check mark and delete an item
-                elif response.POST.get("save"):
-                    # check uncheck
-                    for item in __todo:
-                        if response.POST.get("c{}".format(item.id)) == "clicked":
-                            item.complete = True
-                        else:
-                            item.complete = False
-                        item.save()
-                        # delete item
-                        if response.POST.get("d{}".format((item.id))) == "delete":
-                            item.delete()
-                            return HttpResponseRedirect("../{}/".format(name))
-
-
-        return HttpResponse(render(response , "app/list_item.html", {"name":__name , "todo":__todo}))
-    else: return render(response , "app/lock.html")
+                    # to check mark and delete an item
+                    elif response.POST.get("save"):
+                        # check uncheck
+                        for item in __todo:
+                            if response.POST.get("c{}".format(item.id)) == "clicked":
+                                item.complete = True
+                            else:
+                                item.complete = False
+                            item.save()
+                            # delete item
+                            if response.POST.get("d{}".format((item.id))) == "delete":
+                                item.delete()
+                                return HttpResponseRedirect("../{}/".format(name))
 
 
+            return HttpResponse(render(response , "app/list_item.html", {"name":__name , "todo":__todo}))
+        else: return render(response , "app/lock.html")
+    else:return HttpResponseRedirect("/list")
 
 
 
